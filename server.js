@@ -20,10 +20,10 @@ db.connect(err => {
 });
 
 app.post('/api/barang', (req, res) => {
-    const { nama_barang, jumlah, harga } = req.body;
-    const query = 'INSERT INTO barang (nama_barang, jumlah, harga) VALUES (?, ?, ?)';
+    const { nama_barang, merek, jumlah, harga } = req.body;
+    const query = 'INSERT INTO barang (nama_barang, merek, jumlah, harga) VALUES (?, ?, ?, ?)';
 
-    db.query(query, [nama_barang, jumlah, harga], (err, result) => {
+    db.query(query, [nama_barang, merek, jumlah, harga], (err, result) => {
         if (err) throw err;
         res.send({ message: 'Data barang berhasil ditambahkan', id: result.insertId });
     });
@@ -50,10 +50,10 @@ app.delete('/api/barang/:id', (req, res) => {
 
 app.put('/api/barang/:id', (req, res) => {
     const { id } = req.params;
-    const { nama_barang, jumlah, harga } = req.body;
-    const query = 'UPDATE barang SET nama_barang = ?, jumlah = ?, harga = ? WHERE id = ?';
+    const { nama_barang, merek, jumlah, harga } = req.body;
+    const query = 'UPDATE barang SET nama_barang = ?, merek = ?, jumlah = ?, harga = ? WHERE id = ?';
 
-    db.query(query, [nama_barang, jumlah, harga, id], (err, result) => {
+    db.query(query, [nama_barang, merek, jumlah, harga, id], (err, result) => {
         if (err) throw err;
         res.send({ message: 'Data barang berhasil diperbarui' });
     });

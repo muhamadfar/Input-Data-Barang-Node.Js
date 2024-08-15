@@ -17,6 +17,7 @@ function fetchData() {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${barang.nama_barang}</td>
+                    <td>${barang.merek}</td>
                     <td>${barang.jumlah}</td>
                     <td>${barang.harga}</td>
                     <td>
@@ -31,13 +32,14 @@ function fetchData() {
 
 function addBarang() {
     const nama_barang = document.getElementById('nama_barang').value;
+    const merek = document.getElementById('merek').value;
     const jumlah = document.getElementById('jumlah').value;
     const harga = document.getElementById('harga').value;
 
     fetch('http://localhost:3000/api/barang', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nama_barang, jumlah, harga })
+        body: JSON.stringify({ nama_barang, merek, jumlah, harga })
     })
         .then(response => response.json())
         .then(data => {
@@ -58,13 +60,14 @@ function deleteBarang(id) {
 
 function editBarang(id) {
     const nama_barang = prompt('Masukkan nama barang baru:');
+    const merek = prompt('Masukkan merek baru:');
     const jumlah = prompt('Masukkan jumlah baru:');
     const harga = prompt('Masukkan harga baru:');
 
     fetch(`http://localhost:3000/api/barang/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nama_barang, jumlah, harga })
+        body: JSON.stringify({ nama_barang, merek, jumlah, harga })
     })
         .then(response => response.json())
         .then(data => {
